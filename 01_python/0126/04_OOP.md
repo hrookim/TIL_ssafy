@@ -4,7 +4,7 @@
 
 파이썬에서 모든 것은 객체이다! 
 
-모든 객체는 타입(type), 속성(attribut), 조작법(method)를 가진다.
+모든 객체는 타입(type), 속성(attribute), 조작법(method)를 가진다.
 
 * 객체의 특징
   * **타입(type)**: 어떤 연산자(operator)와 조작(method)이 가능한가?
@@ -390,7 +390,7 @@ p2         # out: I am 혜림
 
 #### 클래스 생성
 
- `class <클래스의 이름>` 으로 생성한다. 이때, `<클래스의 이름>`은 `PascalCase`로 정의합니다. (*혹은 카멜 케이스*)
+ `class <클래스의 이름>` 으로 생성한다. 이때, `<클래스의 이름>`은 `PascalCase`로 정의한다. (*혹은 카멜 케이스*)
 
 클래스 내부에는 데이터와 함수를 정의할 수 있고, 이때 데이터는 **속성(attribute)** 정의된 함수는 **메서드(method)**로 부른다.
 
@@ -692,7 +692,7 @@ class Person:
 
 # 자식 클래스        
 class Soldier(Person):
-    def __init__(self, name, age, number, email,army):
+    def __init__(self, name, age, number, email, army):
         super().__init__(name, age, number, email) 
         self.army = army
         
