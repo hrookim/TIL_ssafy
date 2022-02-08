@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 1200px;
+  margin: 200px auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 700px;
+  margin: auto;
+  border: 2px dashed black;
+}
+
+.card-nav {
+    text-align: center;
+    background-color: rgb(95, 173, 87);
+
+}
+
+.card-header {
+    padding: 18px;
+}
+
+/* 너비는 부모 태그의 100%, 높이는 330px */
+.card-img {
+    height: 300px;
+    width: 100%;
+    /* 아래 코드가 없으면 사진이랑 밑 description 사이 약간의 간격이 생긴다. */
+    display: block; 
+
+}
+
+.card-img-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 70px; */
+  text-align: center;
+  /* line-height: 35px; */
+  color: white;
+  background-color: rgb(31, 150, 31);
+
+}
+
+.card-body {
+    padding: 18px;
+}
+
+.card-body-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+
+.card-body-title>p {
+    right: 0;
+    font-size: 13px;
+}
+
+.card-body-content {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: rgb(236, 224, 204);
+}
+ 
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  text-align: end;
+  background-color: rgb(27, 105, 19);
+  color: white;
+  font-weight: bold;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+/* 20px bold Arial */
+h4 {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Arial;
+
+}
+
+/* Arial */
+p {
+    font-family: Arial;
+}
