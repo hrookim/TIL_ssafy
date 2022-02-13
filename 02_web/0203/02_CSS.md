@@ -134,7 +134,7 @@ h1 {
 * 요소 선택자
   * HTML 파일에 있는 요소(태그)를 직접 지정해서 스타일 주는 거
 * 클래스(class) 선택자
-  * 마침표(.)로 시작하며, 해당 클래스가 적용된 항목을 선택
+  * 마침표(`.`)로 시작하며, 해당 클래스가 적용된 항목을 선택
 * 아이디(id) 선택자
   * `#` 문자로 시작하며, 해당 아이디가 적용된 항목을 선택
   * 일반적으로 하나의 문서에 1번만 사용. 여러 번 사용해도 동작하지만, 단일 id를 사용하는 것을 권장
@@ -167,7 +167,7 @@ h1 {
 <div class="green box">
   box contents
   <div>
-    <p>지역 목록</p>
+    <p>지역 목록</p> <!-- 이것은 div의 직계 하위 요소가 아니므로 blue가 되지 않는다. -->
       <ul>
         <li id="purple">서울</li>
         <li>인천</li>
@@ -177,6 +177,7 @@ h1 {
   </div>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, neque illum? Inventore at doloremque culpa odio sequi? Aliquid ducimus est alias, facilis modi doloribus impedit provident exercitationem, unde quia voluptatibus!</p>
 </div>
+
 <h3>HELLO</h3>
 <h4>CSS</h4>
 ```
@@ -224,7 +225,7 @@ h3, h4 {
 * 상속되는 것
   * Text 관련 요소(font, color, text-align), opacity, visibility 등
 * 상속되지 않는 것
-  * Box model 관련 요소(width, height, margin, padding, border, box-sizing, display), position 관련 요소(position, top/right/bottom/left, z-index 등)
+  * **Box model 관련 요소**(width, height, margin, padding, border, box-sizing, display), **position 관련 요소**(position, top/right/bottom/left, z-index 등)
 
 
 
@@ -269,7 +270,7 @@ h3, h4 {
 </div>
 ```
 
-
+> <img src="02_CSS.assets/image-20220213235840264.png" alt="image-20220213235840264" style="zoom: 67%;" />
 
 
 
@@ -285,6 +286,7 @@ h3, h4 {
 2. `%`
    * **백분율 단위**
    * 가변적인 레이아웃에서 자주 사용
+     * `fluid`를 사용하면 항상 부모 width의 100%를 갖는다.
 3. `em` 
    * (바로 위, 부모 요소에 대한) 상속의 영향을 받음
    * 배수 단위, 요소에 지정된 사이즈에 **상대적인 사이즈**를 가짐
@@ -293,9 +295,17 @@ h3, h4 {
    * **최상위 요소(html)의 사이즈**를 기준으로 **배수 단위**를 가짐
 5. `viewport`
    * 웹 페이지를 방문한 유저에게 바로 보이게 되는 웹 컨텐츠의 영역(디바이스 화면)
+   
    * 디바이스의 viewport를 기준으로 **상대적인 사이즈**가 결정
+   
    * `vw`, `vh`, `vmin`, `vmax`
-   * 50vw라고 한다면 viewport에 보이는 화면의 상대적 너비가 되는 것이다.
+   
+     * 50vw라고 한다면 viewport에 보이는 화면의 상대적 너비가 되는 것이다.
+   
+     * > `vw`, `vh`는 높이값의 1/100인 단위이다. 
+       > 예를 들어, 브라우저 높이가 900px일 때, 1vh는 9px이 된다.
+       >
+       > <img src="02_CSS.assets/image-20220214000442781.png" alt="image-20220214000442781" style="zoom:67%;" />
 
 
 
@@ -433,7 +443,7 @@ shorthand가 존재해서 한번에 작성해도 괜찮다.
   width: 100px;
   height: 50px;
   background-color: greenyellow;
-  box-sizing:border-box;
+  box-sizing: border-box;
   border: 3px solid black;
 }
 ```
@@ -462,9 +472,10 @@ shorthand가 존재해서 한번에 작성해도 괜찮다.
 3. `display: inline-block`
    * block과 inline 레벨 요소의 특징을 모두 가진다.
    * inline처럼 한 줄에 표시 가능하고, block처럼 width, height, margin 속성을 모두 지정할 수 있다.
+   * `vertical-align: middle` 글씨가 한 줄 내의 중앙에 위치하게 된다.
 4. `display: none`
-   * 해당 요소를 화면에 표시하지 않고, 공간조차 부여되지 않는다.
-   * 이와 비슷한 `visibility: hidden;`은 해당 요소가 공간은 차지하나 화면에 표시만 하지 않는 것이다.
+   * 해당 요소를 화면에 표시하지 않고, **공간조차 부여되지 않는다.**
+   * 이와 비슷한 `visibility: hidden;`은 해당 요소가 **공간은 차지하나** 화면에 표시만 하지 않는 것이다.
 
 
 
@@ -527,7 +538,7 @@ inline의 기본 너비는 컨텐츠 영역만큼
 
 2. `absolute`: 절대 위치
 
-   * 요소를 일반적인 문서 흐름에서 제거 후 레이아웃에 공간을 차지하지 않는다. 
+   * 요소를 일반적인 문서 흐름에서 제거 후 <u>레이아웃에 공간을 차지하지 않는다</u>. 
    * **normal flow 벗어난다.**
    * static이 아닌 **가장 가까이 있는 부모/조상 요소를 기준**으로 이동한다. (없는 경우 `body`가 된다.)
 
@@ -535,8 +546,8 @@ inline의 기본 너비는 컨텐츠 영역만큼
 
 3. `fixed`: 고정 위치
 
-   * 요소를 일반적인 문서 흐름에서 제거 후 레이아웃에 공간을 차지하지 않는다.
-   * normal flow 벗어난다.
+   * 요소를 일반적인 문서 흐름에서 제거 후 <u>레이아웃에 공간을 차지하지 않는다</u>.
+   * **normal flow 벗어난다.**
    * 부모 요소와 관계없이 **viewport를 기준으로 이동한다.**
      * 스크롤 시에도 항상 같은 곳에 위치한다.
 
