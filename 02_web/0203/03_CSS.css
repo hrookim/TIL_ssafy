@@ -1,0 +1,28 @@
+/* 전체 선택자 */
+* {
+  color: gray;
+}
+
+/* 요소 선택자 */
+h2 {
+  color: orange;
+}
+
+h3, h4 {
+  font-size: 30px;
+}
+
+/* 클래스 선택자 */
+.green {
+  color: green;
+}
+
+/* 아이디 선택자 */
+#purple {
+  color: purple;
+}
+
+/* 자식 결합자 */
+.box > p {
+  color: blue;
+}

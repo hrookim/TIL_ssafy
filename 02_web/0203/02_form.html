@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 로그인 폼과 사용자 유형을 선택하는 label을 제작한다면? -->
+  <form action="" method="post">
+    <!-- ID -->
+    <div>
+      <label for="ID">ID</label>
+      <input type="text" name="ID" id="ID" autofocus required>
+    </div>
+    <!-- PW -->
+    <div>
+      <label for="PW">PW</label>
+      <input type="password" name="password" id="PW" required>
+    </div>
+    <!-- 사용자 유형 선택하자! -->
+    <div>
+      <label for="usertype">사용자 유형 선택</label>
+      <select name="usertype" id="usertype">
+        <option value="student">학생</option>
+        <option value="lecturer">강사</option>
+        <option value="parents">학부모</option>
+        <option value="etc">기타</option>
+      </select>
+    </div>
+    <!-- 개인정보 제공 동의 -->
+    <div>
+      <p>개인정보 제공 동의</p>
+      <label for="agree">동의</label>
+      <input type="radio" value="agree" name="agreement" id="agree" checked>
+      <label for="disagree">비동의</label>
+      <input type="radio" value="disagree" name="agreement" id="disagree">
+    </div>
+
+    <!-- 제출 버튼! -->
+    <hr>
+    <input type="submit" value="로그인" id="submit">
+  </form>
+</body>
+</html>
