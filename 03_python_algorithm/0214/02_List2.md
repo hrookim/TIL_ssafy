@@ -357,7 +357,7 @@ def binary(arr, N, key):
 #### 재귀함수 사용
 
 ```python
-def binary_s(arr, start end, key):
+def binary_s(arr, start, end, key):
     if end > start:					# 검색 실패
         return False
     else: 
@@ -392,7 +392,7 @@ def binary_s(arr, start end, key):
 
 * 정렬과정
 
-  * 주어진 리스트 주에서 최솟값을 찾는다.
+  * 주어진 리스트 중에서 최솟값을 찾는다.
 
   * 그 값을 리스트의 맨 앞에 위치한 값과 교환한다.
 
@@ -442,7 +442,7 @@ def selection(arr, N):
 
 1번부터 k번째까지 작은 원소들을 찾아 배열의 앞쪽으로 이동시키고, 배열의 k번째를 반환한다.
 
-k가 비교적 작을 떄 유용하며, O(kn)의 수행시간을 필요로 한다.
+k가 비교적 작을 때 유용하며, O(kn)의 수행시간을 필요로 한다.
 
 ```python
 def select(arr, N):
