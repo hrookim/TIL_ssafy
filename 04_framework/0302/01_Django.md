@@ -58,7 +58,7 @@
    * 실제 내용을 보여주는 데 사용된다. (presentation)
 3. View
    * HTTP 요청을 수신하고 HTTP 응답을 반환한다.
-   * Model을 통해 요청을 충족시키는데 필요한 데이터에 접근한다.
+   * Model을 통해, 요청을 충족시키는데 필요한 데이터에 접근한다.
    * template에게 응답의 서식 설정을 맡긴다.
 
 <img src="01_Django.assets/image-20220320162416364.png" alt="image-20220320162416364" style="zoom: 33%;" />
@@ -113,15 +113,15 @@ $ python manage.py runserver
 
 <img src="01_Django.assets/image-20220320163651765.png" alt="image-20220320163651765" style="zoom:50%;" />
 
-1. `__init__.py`: python에게 이 디렉토리를 하나의 python 패키지로 다루도록 지시 / 우리가 만지지 않는다.
+1. `__init__.py`: python에게 이 디렉토리를 하나의 python 패키지로 다루도록 지시 / *우리가 만지지 않는다.*
 
-2. `asgi.py`: django 애플리케이션이 비동기식 웹 서버와 연결 및 소통하는 것을 도움 / 우리가 배포를 할 때 만지는 것이다.
+2. `asgi.py`: django 애플리케이션이 비동기식 웹 서버와 연결 및 소통하는 것을 도움 / *우리가 배포를 할 때 만지는 것이다.*
 
 3. `settings.py`: 애플리케이션의 모든 설정을 포함
 
 4. `urls.py`: 사이트의 url과 적절한 views의 연결을 지정
 
-5. `wsgi.py`: django 애플리케이션이 웹 서버와 연결 및 소통하는 것을 도움 / 우리가 배포를 할 때 만지는 것이다
+5. `wsgi.py`: django 애플리케이션이 웹 서버와 연결 및 소통하는 것을 도움 / *우리가 배포를 할 때 만지는 것이다*
 
 6. `manage.py`: django 프로젝트와 다양한 방법으로 상호작용하는 커맨드라인 유틸리티
 
@@ -146,7 +146,7 @@ $ python manage.py startapp <애플리케이션 이름>
 <img src="01_Django.assets/image-20220320164303649.png" alt="image-20220320164303649" style="zoom:50%;" />
 
 1. `admin.py`: 관리자용 페이지를 설정하는 곳
-2. `apps.py`: 앱의 정보가 작성된 곳 / 우리가 건들지 않는다.
+2. `apps.py`: 앱의 정보가 작성된 곳 / *우리가 건들지 않는다.*
 3. `models.py`: 앱에서 사용하는 model을 정의하는 곳
 4. `tests.py`: 프로젝트의 테스트 코드를 작성하는 곳 
 5. `views.py`: view 함수들이 정의 되는 곳
@@ -159,14 +159,14 @@ $ python manage.py startapp <애플리케이션 이름>
 
 * 프로젝트
   * 프로젝트는 애플리케이션의 집합이다.
-  * 하나의 프로젝트에는 여러 앱이 포함될 수 있고, 앱을 여러 프로젝트에 있을 수 있다.
+  * 하나의 프로젝트에는 여러 앱이 포함될 수 있고, 앱은 여러 프로젝트에 있을 수 있다.
 * 애플리케이션
   * 앱은 실제 요청을 처리하고 페이지를 보여주고 하는 등의 역할을 담당한다.
   * 일반적으로 앱은 하나의 역할 및 기능 단위로 작성한다.
 
 * 프로젝트에서 앱을 사용하기 위해서는 반드시 `INSTALLED_APPS`리스트에 추가해야 한다. 
   이때, **꼭 앱을 생성한 후 리스트에 등록해야한다!!!!**
-  * `settings.py`에 들어가서 설치한 앱을 문자열 형태로 입력해준다.
+  * `settings.py`에 들어가서 설치한 앱을 **문자열 형태**로 입력해준다.
   * `INSTALLED_APPS`: django installation에 활성화된 모든 앱을 지정하는 문자열 목록
   * local apps -> third party apps -> django apps 순서로 작성해주는 것이 좋다.
     이 순서를 지키지 않아도 문제가 없지만, 그래도 심화 단계로 가면 순서가 의미가 있으므로 지키는 것을 권장한다.
@@ -177,11 +177,11 @@ $ python manage.py startapp <애플리케이션 이름>
 
 1. `LANGUAGE_CODE`
    * 모든 사용자에게 제공되는 번역을 결정한다.
-   * 이 설정이 적용되려면 USE_I18N이 활성화되어 있어야 한다.
+   * 이 설정이 적용되려면 `USE_I18N`이 활성화되어 있어야 한다.
 2. `TIME_ZONE`
    * 데이터베이스 연결의 시간대를 나타내는 문자열 지정
-   * USE_TZ가 True이고 이 옵션이 설정된 경우, DB에서 날짜 시간을 읽으면 UTC 대신 새로 설정한 시간대의 인식 날짜 & 시간이 반환된다.
-   * USE_TZ이 Flase인 상태로 이 값을 설정하는 경우 에러가 발생하므로 주의한다.
+   * `USE_TZ`가 `True`이고 이 옵션이 설정된 경우, DB에서 날짜 시간을 읽으면 UTC 대신 새로 설정한 시간대의 인식 날짜 & 시간이 반환된다.
+   * `USE_TZ`이 `Flase`인 상태로 이 값을 설정하는 경우 에러가 발생하므로 주의한다.
 
 <img src="01_Django.assets/image-20220320172052568.png" alt="image-20220320172052568" style="zoom:50%;" />
 
@@ -327,7 +327,7 @@ Including another URLconf
 ```django
 {# forloop: for 순서의 번호를 붙여준다. 1부터~ / counter0는 0부터~ #}
 {% for food in foods %}
-<p>{{ forloop.counter }} {{ food}}</p>
+<p>{{ forloop.counter }} {{ food }}</p>
 {% endfor%}
 
 {# date.items: 딕셔너리의 .items()와 같은 형태, 하지만 파이썬은 아니다! #}
@@ -426,7 +426,7 @@ base.html -> 상속받은 자식 html 형태로 작성할 수 있다.
 
 ### 2. `input`
 
-* 사용자로부터 데이터를 입력 받기 위해 사요
+* 사용자로부터 데이터를 입력 받기 위해 사용
 * type 속성에 따라 동작 방식이 달라진다
 * 핵심 속성
   * `name`: 양식을 제출했을 때, name이라는 이름에 설정된 값을 넘겨서 값을 가져올 수 있다. (중복 가능하다!!)
