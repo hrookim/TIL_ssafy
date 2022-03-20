@@ -57,7 +57,7 @@
 
 
 * 장점: 
-  * SQL을 잘 알지 못해도 DM 조작이 가능하다.
+  * SQL을 잘 알지 못해도 DB 조작이 가능하다.
   * SQL의 절차적 접근이 아닌 객체 지향적 접근으로 인한 높은 생산성
 * 단점:
   * ORM만으로 완전한 서비스를 구현하기 어려운 경우가 있음
@@ -94,6 +94,7 @@ models 모듈을 통해 어떠한 타입의 DB 칼럼을 정의할 것인지 정
    * 길이의 제한이 있는 문자열을 넣을 때 사용
    * `CharField`의 `max_length`는 <u>필수 인자</u>
    * 필드의 최대 길이(문자), 데이터베이스 레벨과 Django의 유효성 검사(값을 검증)에서 활용
+   
 2. `TextField(**options)`
    * 글자의 수가 많을 때 사용
    * `max_length` 옵션 작성시 자동 양식 필드인 textarea 위젯에 반영은 되지만, 모델과 DB 수준에는 적용되지 않는다.
@@ -123,11 +124,13 @@ models 모듈을 통해 어떠한 타입의 DB 칼럼을 정의할 것인지 정
 
      **1 입력 후 enter** => timezone.now 함수 값 자동 설정 => 빈 값 상태에서 enter 클릭 => `migrate`로 models.py 수정사항을 반영한다.
 
+
+
 ## Migrations
 
 * **Django가 model에 생긴 변화를 반영하는 방법**
 
-* Migration 실행 및 DM 스키마를 다루기 위한 몇가지 명령어
+* Migration 실행 및 DB 스키마를 다루기 위한 몇가지 명령어
 
   * `makemigrations`
     * model을 변경한 것에 기반한 새로운 migration(like 설계도)을 만들 때 사용
@@ -195,6 +198,8 @@ $ python manage.py migrate <앱이름>
 
 ### DB API 구문 - Making Queries
 
+> API: Application Programming Interface
+
 <img src="0302.assets/image-20220319171337265.png" alt="image-20220319171337265" style="zoom:50%;" />
 
 1. Manager
@@ -210,7 +215,7 @@ $ python manage.py migrate <앱이름>
 ### Django shell
 
 * 일반 python shell을 통해서는 django 프로젝트 환경에 접근할 수 없다.
-* 그래서 django 프로제긑 설정이 로드된 python shell을 활용해 DB API 구문 테스트를 진행한다.
+* 그래서 django 프로젝트 설정이 로드된 python shell을 활용해 DB API 구문 테스트를 진행한다.
 * 기본 Django shell보다 더 많은 기능을 제공하는 shell_plus를 사용해서 진행한다. 
   (Django-extensions 라이브러리의 기능 중 하나)
 
@@ -342,7 +347,7 @@ article 인스턴스 객체의 인스턴스 변수의 값을 변경한 후 저�
 >>> article.save()
 
 >> article.title
-'첫번쨰 제목이야'
+'첫번째 제목이야'
 ```
 
 
@@ -460,7 +465,7 @@ admin.site.register(<클래스 이름>)
   * 사용자의 데이터에 임의의 난수값을 부여해, 매 요청마다 해당 난수값을 포함시켜 전송시키도록 한다.
   * 이후 서버에서 요청을 받을 때마다 전달된 token 값이 유효한지 검증한다.
 * 일반적으로 데이터 변경이 가능한 POST, PATCH, DELETE Method 등에 적용한다. (GET은 제외)
-* django는 CSRF token 템플릿 태그를 제공한다.
+* django는 `CSRF token` 템플릿 태그를 제공한다.
 
 
 
@@ -468,7 +473,7 @@ admin.site.register(<클래스 이름>)
 
    * csrf 보호에 사용
    * input type이 hidden으로 작성되며 value는 django에서 생성한 hash값으로 설정된다.
-   * 해당 캐그 없이 요청을 보낸다면 django 서버는 403 forbidden을 응답한다.
+   * 해당 태그 없이 요청을 보낸다면 django 서버는 403 forbidden을 응답한다.
 
 2. CsrfViewMiddleware
 
@@ -497,20 +502,25 @@ admin.site.register(<클래스 이름>)
 >
 >즉, create view 함수에서 다루고 있는 데이터로 index 페이지가 render된다는 것이다.
 
+![image-20220321004308900](02_Django_models.assets/image-20220321004308900.png) request.POST[key] 이렇게 접근도 가능
+
 
 
 * **Django shortcut function - `redirect()`**
   * 새 url로 요청을 다시 보낸다.
   * 인자에 따라 `HttpResponseRedirect`를 반환한다.
-  * 브라우저는 현재 경로에 따라 전체 url 자체를 재구성한다.(reconstruct)
+  * 브라우저는 현재 경로에 따라 **전체 url 자체를 재구성한다.(reconstruct)**
   * 사용 가능한 인자
     * model / <u>view name</u> / absolute or relative url
+
+
+
 * **변경된 형태!!!**
   <img src="0302.assets/image-20220319181320431.png" alt="image-20220319181320431" style="zoom:67%;" />
 
 
 
-* 혹은 **detail 페이지를 활용**해서 작성할 수도 있다.
+* 혹은 **detail 페이지를 활용**해서 작성할 수도 있다. *variable routing을 위한 인자도 같이 넘겨준다.*
   <img src="0302.assets/image-20220319181650097.png" alt="image-20220319181650097" style="zoom:50%;" />
 
 
@@ -521,8 +531,12 @@ admin.site.register(<클래스 이름>)
 
 <img src="0302.assets/image-20220319181809668.png" alt="image-20220319181809668" style="zoom:80%;" />
 
-* HTTP Method POST에서만 삭제될 수 있도록 조건을 작성한다.
+* HTTP Method `POST`에서만 삭제될 수 있도록 조건을 작성한다.
   <img src="0302.assets/image-20220319181913522.png" alt="image-20220319181913522" style="zoom:67%;" />
+
+> 내가 실습한 버전에서는 이렇게 된다.
+>
+> <img src="02_Django_models.assets/image-20220321004637822.png" alt="image-20220321004637822" style="zoom: 80%;" />
 
 
 
