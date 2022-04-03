@@ -11,15 +11,15 @@ def preorder(V):
 
 def inorder(V):
     if V:
-        preorder(ch1[V])
+        inorder(ch1[V])
         print(V, end="-> ")
-        preorder(ch2[V])
+        inorder(ch2[V])
 
 
 def postorder(V):
     if V:
-        preorder(ch1[V])
-        preorder(ch2[V])
+        postorder(ch1[V])
+        postorder(ch2[V])
         print(V, end="-> ")
 
     
@@ -38,12 +38,12 @@ for i in range(E):
     elif ch1[p]:
         ch2[p] = c
 
-# print(ch1, ch2, sep="\n")
-# preorder(1)
-# print()
-# inorder(1)
-# print()
-# postorder(1)
+print(ch1, ch2, sep="\n")
+preorder(1)
+print()
+inorder(1)
+print()
+postorder(1)
 
 '''
 4 

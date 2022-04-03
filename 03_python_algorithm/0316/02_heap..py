@@ -54,6 +54,6 @@ for k in arr:
 print(tree[1])
 enq(9)
 print(tree[1])
-while last >0:
+while last > 0:
     print(deq(), tree[1])
 # 이게 바로 heap sort.... 세상에
