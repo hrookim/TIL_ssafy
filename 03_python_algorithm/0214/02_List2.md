@@ -358,7 +358,7 @@ def binary(arr, N, key):
 
 ```python
 def binary_s(arr, start, end, key):
-    if end > start:					# 검색 실패
+    if end < start:					# 검색 실패
         return False
     else: 
         middle = (start + end) // 2

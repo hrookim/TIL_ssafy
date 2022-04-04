@@ -51,9 +51,9 @@ last = 0            # 마지막 정점 번호, 아직은 비어있으니까 이�
 arr = [3, 2, 4, 7, 5, 1]
 for k in arr:
     enq(k)
-print(tree[1])
+# print(tree[1])
 enq(9)
-print(tree[1])
+# print(tree[1])
 while last > 0:
-    print(deq(), tree[1])
+    print(deq())
 # 이게 바로 heap sort.... 세상에
