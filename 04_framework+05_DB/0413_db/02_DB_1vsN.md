@@ -6,7 +6,7 @@
 
 * 관계형 데이터베이스에서 한 테이블의 필드 중 다른 테이블의 행을 식별할 수 있는 키
 
-* 참조하는 테이블에서 속성(필도)에 해당하고, 이는 참조되는 테이블의 기본키(Primayr key)를 가리킨다.
+* 참조하는 테이블에서 속성(필드)에 해당하고, 이는 참조되는 테이블의 기본키(Primayr key)를 가리킨다.
 
 * 참조하는 테이블의 외래키는 참조되는 테이블 행 1개에 대응된다.
 
@@ -51,10 +51,8 @@
 
 * <img src="02_DB_1vsN.assets/image-20220417153323183.png" alt="image-20220417153323183" style="zoom:80%;" />
 
-  > 1:N 관계에서, 외래키의 필드 이름은 참조하는 모델 클래스 이름의 단수형 소문자로 작성을 한다.
-
 * 만약 FK 인스턴스를 `abcd`로 생성했다면, `abcd_id`로 만들어진다.
-* 하지만, 명시적인 모델 관계 파악을 위해 참조하는 클래스 이름의 소문자(단수형)으로 작성하는 것이 바람직하다(1:N)
+* 하지만, 명시적인 모델 관계 파악을 위해 참조하는 모델 클래스 이름의 소문자(단수형)으로 작성하는 것이 바람직하다(1:N)
 
 
 
@@ -111,7 +109,7 @@ c.save()  # 생성 완료
 ```
 
 * **주의사항**: `c`에서 외래키를 지정하는 방법
-  `a = Article()`로 생성 /  `c = Comment()`로 생성
+  `a = Article()`로 생성 /  `c = Comment()`로 생성돼 있음을 가정
 
   1. `c.article_id = a.pk`
      테이블의 컬럼명을 정확하게 명시한 경우, 정확하게 a라는 게시글 인스턴스의 pk라고 지정을 해줘야 한다.
@@ -146,7 +144,7 @@ c.article_id  # 1, 필드명으로 부르는 방법
 ![image-20220417161737076](02_DB_1vsN.assets/image-20220417161737076.png)
 
 * Article에서 Comment를 어떻게 참조하면 좋을까?
-* 역참조 (`comment_set`): `참조하는테이블명_set`
+* **역참조 (`comment_set`): `참조하는테이블명_set`**
   * Article(1) -> Comment(N)
   * `article.comment` 형태로는 사용할 수 없고, `article.comment_set` manager가 생성된다.
   * 게시글에 몇 개의 댓글이 작성 되었는지 django ORM이 보장할 수 없기 때문
@@ -154,7 +152,7 @@ c.article_id  # 1, 필드명으로 부르는 방법
     * **실제로 Article 클래스에는 Comment와의 어떠한 관계도 작성되어 있지 않다.**
   * 사용예시
     ![](02_DB_1vsN.assets/image-20220417162421996.png)
-* 참조(`article`): `참조되는테이블명`
+* **참조(`article`): `참조되는테이블명`**
   * Comment(N) -> Article(1)
   * 댓글의 경우 어떠한 댓글이든 반드시 자신이 참조하고 있는 게시글이 있으므로, `comment.article`과 같이 접근할 수 있다.
   * 실제 `ForeginKey` 또한 Comment 클래스에서 작성된다.
@@ -238,7 +236,7 @@ urlpatterns = [
 ```
 
 ```html
-<--! artilces/detail.html -->
+<--! articles/detail.html -->
 
 {% block content %}
   <h1>DETAIL</h1>
@@ -327,7 +325,7 @@ def detail(request, pk):
 
 #### +) 댓글 개수 출력하기
 
-1. `{{ commeents|length }}` : comments queryset의 갯수 반환. DTL 사용
+1. `{{ comments|length }}` : comments queryset의 갯수 반환. DTL 사용
 2. `{{ article.comment_set.all|length }}`
 3. `{{ comments.count }}`
 
@@ -441,7 +439,7 @@ def comment_delete(request, pk, comment_pk):
 * 일부 프로젝트에서는 Django의 내장 User 모델이 제공하는 인증 요구사항이 적절하지 않을 수 있다.
   * ex) username 대신 email을 식별 토큰으로 사용하는 것이 더 적합한 경우
 * Django는 User를 참조하는데 사용하는 `AUTH_USER_MODEL` 값을 제공하여, default user model을 재정의(override)할 수 있도록 한다.
-* Django는 새 프로제긑를 시작하는 경우 기본 사용자 모델이 충분하더라도, 커스텀 유저 모델을 설정하는 것을 강력하게 권장한다.
+* Django는 새 프로젝트를 시작하는 경우 기본 사용자 모델이 충분하더라도, 커스텀 유저 모델을 설정하는 것을 강력하게 권장한다.
   * **단, 프로젝트의 모든 migrations 혹은 첫 migrate를 실행하기 전에 이 작업을 마쳐야 한다.**
 
 
@@ -512,7 +510,7 @@ admin.site.register(User, UserAdmin)
 ### Custom User & Built-in Auth Forms
 
 * 지금까지 한 것에서 회원가입을 시도하면 에러가 발생한다.
-  <img src="02_DB_1vsN.assets/image-20220417173503371.png" alt="image-20220417173503371" style="zoom:67%;" />
+  <img src="02_DB_1vsN.assets/image-20220417173503371.png" alt="image-20220417173503371" style="zoom: 50%;" />
 
 * 회원가입에서 사용하는 Form은 `UserCreationForm`이라는 모델폼이다. 모델폼은 `class Meta`가 있고, 거기에 `model=`이 무엇인지 작성되어 있을 것이다.
 
@@ -625,7 +623,7 @@ class Article(models.Model):
 > 1. `INSTALLED_APPS`에서 순차적으로 import
 > 2. 각 앱의 models를 import
 >
-> 만약 get_user_model로 한다면, articles에서 유저를 받을 때, account 앱에 있는 모델을 못 받고 아직은 그냥 User로 데려오게 되는 것이다. 그래서 내부적으로 앱이 실행되는 순서에 의해서 문자열으로 가져오게 되는 것이다.
+> 만약 get_user_model로 한다면, articles에서 유저를 받을 때, account 앱에 있는 모델을 못 받고 아직은 그냥 User로 데려오게 되는 것이다. 이렇게 내부적으로 앱이 실행되는 순서에 의해, 문자열로 가져오는 `AUTH_USER_MODEL`을 사용한다.
 
 1. `get_user_model()` 은 사용하지 않는다.
    * 반환값이 <u>object</u>
@@ -633,7 +631,7 @@ class Article(models.Model):
    * **단, models.py가 아닌 다른 모든 곳에서 User 모델을 참조할 때 사용한다.**
 2. **`settings.AUTH_USER_MODEL`을 사용한다.**
    * 반환값이 <u>문자열</u>: `'accounts.User'`
-   * User 모델에 대한 외캐리 또는 다대다 관계를 정의할 떄 사용해야 한다.
+   * User 모델에 대한 외래키 또는 다대다 관계를 정의할 떄 사용해야 한다.
    * **`models.py`에서만 User 모델을 참조할 때 사용한다.**
 
 
