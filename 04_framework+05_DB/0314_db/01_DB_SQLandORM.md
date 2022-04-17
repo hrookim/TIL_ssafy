@@ -1,4 +1,4 @@
-# 01_DB(데이터베이스)_SQL&ORM
+# 01_DB_SQL&ORM
 
 ## DB(데이터베이스)
 
@@ -289,7 +289,7 @@ Run Query 클릭 후 어떤 db인지를 선택해주면 된다!! (우리는 tuto
   >
   > 문자열 'abcdef'에서 문자'c'는 시작점' a'에서 2의 OFFSET을 지닌다.
   >
-  > SELECT * FROm my_table LIMIT 10 OFFSET 5;
+  > `SELECT * FROM my_table LIMIT 10 OFFSET 5;`
   > 6번째 행부터 10개 행을 조회한다.
 
 
@@ -343,7 +343,7 @@ Run Query 클릭 후 어떤 db인지를 선택해주면 된다!! (우리는 tuto
   맨 처음에 테이블을 생성할 때 이 속성을 넣어서 만든다.
   <img src="01_DB_SQLandORM.assets/image-20220416163741209.png" alt="image-20220416163741209" style="zoom: 67%;" />
 
-* > django의 경우 migrate를 할 때 SQL문에서 기본적으로 `AUTOINCREMENT`가 들어가 있고, `NOT NULL`도 들어가 있따.
+* > django의 경우 migrate를 할 때 SQL문에서 기본적으로 `AUTOINCREMENT`가 들어가 있고, `NOT NULL`도 들어가 있다.
 
 
 
@@ -394,7 +394,7 @@ Run Query 클릭 후 어떤 db인지를 선택해주면 된다!! (우리는 tuto
   SELECT first_name FROM users WHERE age >= 30;
   ```
 
-* age가 30 이상이고 성이 '김'인 사람의 나이와 성만 조회하려면? (`AND`) (`OR`도 사용 가능)
+* age가 30 이상이고 성이 '김'인 사람의 나이와 성만 조회하려면? (`AND` `OR`도 사용 가능)
 
   ```sql
   SELECT age, last_name, first_name FROM users WHERE age >= 30 AND last_name='김';
@@ -573,6 +573,13 @@ Run Query 클릭 후 어떤 db인지를 선택해주면 된다!! (우리는 tuto
 
     | <img src="01_DB_SQLandORM.assets/image-20220416182529251.png" alt="image-20220416182529251" style="zoom:50%;" /> | <img src="01_DB_SQLandORM.assets/image-20220416182554420.png" alt="image-20220416182554420" style="zoom:50%;" /> |
     | ------------------------------------------------------------ | ------------------------------------------------------------ |
+
+
+
+> GROUP BY 컬럼이 여러개인 경우
+>
+> `SELECT country, last_name, COUNT(*)  FROM users GROUP BY country, last_name;`
+> <img src="01_DB_SQLandORM.assets/image-20220417205000615.png" alt="image-20220417205000615" style="zoom:50%;" />
 
 
 
