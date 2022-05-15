@@ -2,6 +2,7 @@
   <div>
     <span @click="updateTodos(todo)" :class="{'is-completed': todo.isCompleted}">{{todo.title}}</span>
     <button @click="deleteTodo(todo)">X</button>
+    <button @click="printLog()">TEST</button>
   </div>
 </template>
 
@@ -15,7 +16,10 @@ export default {
     todo: Object
   },
   methods: {
-    ...mapActions(['updateTodos', 'deleteTodo'])
+    ...mapActions(['updateTodos', 'deleteTodo']),
+    printLog(){
+      console.log('실행됩니다.')
+    }
   }
 
 }
