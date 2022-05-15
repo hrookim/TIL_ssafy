@@ -21,8 +21,8 @@ export default {
       parentData: 'This is Parent Data'
   }},
   methods: {
-    onBoss(inputData) {
-      console.log('들려들려...', '"'+inputData+'"')
+    onBoss(inputData, ...input3) {
+      console.log('들려들려...', '"'+inputData+'"', ...input3)
     }
   }
 }
