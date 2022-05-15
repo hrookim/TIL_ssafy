@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <input type="text" v-model="message">
+    </div> 
+
+    <p>{{other}}</p>
+
+    <p>Original: <strong>{{ message }}</strong></p>
+    <p>Reversed by Method: <strong>{{ reverseMessage() }}</strong> </p>
+    <p>Reversed by Computed: <strong>{{ reversedMessage }}</strong> </p>
+
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        sessionId: '`~~`',
+        other: '안녕하세용',
+        message: '한글이 좋아요',
+      },
+      // Setter: data를 바꾸는 로직 위주
+      methods: {
+        reverseMessage() {
+          return this.message.split('').reverse().join('')
+        }
+      },
+      // Getter: data를 통해 값을 얻는다!
+      computed: {
+        reversedMessage() {
+          return this.message.split('').reverse().join('')
+        },
+        isLoggedIn() {
+          return this.sessionId? true: false
+        }
+      }
+    })
+  </script>
+</body>
+</html>

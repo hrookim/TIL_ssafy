@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Quick Start</title>
+</head>
+<body>
+  <!-- FIXME: 2. 선언적 렌더링 -->
+  <h2>선언적 렌더링</h2>
+  <div id="app1">
+    {{ message }}
+    {{ anotherMessage}}
+  </div>
+
+  <!-- FIXME: 3. 엘리멘트 속성 바인딩 -->
+  <h2>Element 속성 바인딩</h2>
+  <div id="app2">
+    {{ message }}
+  </div>
+
+  <!-- FIXME: 4. 조건 -->
+  <h2>조건</h2>
+  <div id="app3"> 
+    <p v-if="seen">보인다</p>
+    <p v-else>안보인다</p>
+  </div>
+
+  <!-- FIXME: 5. 반복 -->
+  <h2>반복</h2>
+  <div id="app4">
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </div>
+
+  <!-- FIXME: 6. 사용자 입력 핸들링 -->
+  <h2>사용자 입력 핸들링</h2>
+  <div id="app5">
+    <p> {{ message }} </p>
+    <!-- 이 input태그는 message와 동기화가 일어난다. -->
+    <input v-model="message" type="text">
+    <button v-on:click="reversedMessage">거꾸로</button>
+  </div>
+
+  <!--TODO: 1. Vue CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script>
+    // TODO: 2. 선언적 렌더링
+    // Vue instance를 만든다. -> 하나의 객체를 만드는 것!
+    const app1 = new Vue({
+      el: '#app1', // query selector의 역할
+      // data === model
+      data: {
+        message: '안녕하세요 Vue',
+        anotherMessage: '이것도 출력이 가능하다!',
+      },
+    })
+ 
+    // TODO: 3. 엘리먼트 속성 바인딩
+    const app2 = new Vue({
+      el: '#app2',
+      data: {
+        // template string
+        message: `이 메시지는 ${new Date()}에 로드되었당!`
+      },
+    })
+  
+    // TODO: 4. 조건
+    const app3 = new Vue({
+      el: '#app3',
+      data: {
+        seen: false,
+      }
+    })
+
+    // TODO: 5. 반복
+    const app4 = new Vue({
+      el: '#app4',
+      data: {
+        todos: [
+          {text: 'js복습'},
+          {text: 'vue복습'}
+        ]
+      }
+    })
+
+    // TODO: 6. 사용자 입력 핸들링
+    const app5 = new Vue({
+      el: '#app5',
+      data: {
+        message: '안녕?'
+      },
+      // 절대로 화살표 함수로 정의하지 않는다!!!! 왜? this가 들어있으므로!!
+      methods: { 
+        reversedMessage() {
+          this.message = this.message.split('').reverse().join('')
+        }
+      }
+    })
+    
+  </script>
+</body>
+</html>

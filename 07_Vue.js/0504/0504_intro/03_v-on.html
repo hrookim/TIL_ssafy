@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 메서드 핸들러 -->
+    <button v-on:click="alertHello">버튼</button>
+    <button @click="alertHello">벌튼</button>
+
+
+    <!-- 기본 동작 방지 -->
+    <!-- 막기만 할 것이다: @submit.prevent -->
+    <form action="" @submit.prevent="alertHello">
+      <button>GoGo</button>
+    </form>
+
+    <!-- 키 별칭을 이용한 키 입력 수식어 -->    
+    <input type="text" @keyup.space="log">
+    <!-- cb 함수에서 vue의 특수 문법: log를 실행할 때 내부인자를 넘기겠다!라는 의미가 된다. 이렇게 되면 첫번째 인자르 asdf가 들어가게 된다! -->
+    <input type="text" @keyup.enter="log('asdf')">
+
+    <p>{{ message }}</p>
+    <button @click="changeMessage">changeMessage</button>
+
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      // 값의 모임
+      data: {
+        message: '안녕 브이온'
+      },
+      // 행위의 모임(함수)
+      methods: {
+        alertHello: function() {
+          alert('헬로우~~~')
+        },
+        log: function(sth) {
+          // 넘어오니 인자가 없으면 event가 되고, 인자가 있으면 그것으로!
+          console.log(sth)
+        },
+        changeMessage: function() {
+          this.message = '내가 바꿨다'
+        }
+      }
+    })
+  </script>
+</body>
+</html>
