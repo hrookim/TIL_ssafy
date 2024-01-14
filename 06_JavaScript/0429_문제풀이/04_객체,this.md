@@ -81,11 +81,11 @@
   function printUser ({name, age, balance}) {
       console.log(name, age, balance)
   }
-  ```
-
   
-
-
+  printUser(user) // 김혜림 27 400
+  ```
+  
+  
 
 #### 5) Spread Operator
 
